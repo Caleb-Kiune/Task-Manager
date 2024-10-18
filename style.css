@@ -1,24 +1,31 @@
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #121212;
-  color: #e0e0e0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.container {
-  background-color: #1e1e1e;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
   text-align: center;
-  color: #ffffff;
+  margin-top: 20px;
+  color: #ff6f61;
+}
+
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
 }
 
 form {
@@ -34,17 +41,12 @@ input[type="text"] {
   border-radius: 4px;
   background-color: #2c2c2c;
   color: #ffffff;
-  transition: border-color 0.3s;
-}
-
-input[type="text"]:focus {
-  border-color: #bb86fc;
 }
 
 button {
   padding: 10px 20px;
   border: none;
-  background-color: #bb86fc;
+  background-color: #ff6f61;
   color: #121212;
   border-radius: 4px;
   cursor: pointer;
@@ -52,15 +54,15 @@ button {
 }
 
 button:hover {
-  background-color: #8c6ce7;
+  background-color: #ff4a3d;
 }
 
 .task {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
   background-color: #2c2c2c;
   padding: 10px;
+  margin-bottom: 10px;
   border-radius: 8px;
   transition: background-color 0.3s;
 }
@@ -69,30 +71,28 @@ button:hover {
   background-color: #373737;
 }
 
-.task label {
+.task input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
+.task .text {
   flex: 1;
   margin-left: 10px;
   color: #e0e0e0;
 }
 
-.remove {
+.task button {
   background: none;
   border: none;
   cursor: pointer;
-  display: flex;
-  align-items: center;
 }
 
-.remove svg {
-  fill: #bb86fc;
+.task button svg {
+  fill: #ff6f61;
   transition: fill 0.3s;
 }
 
-.remove:hover svg {
-  fill: #8c6ce7;
-}
-
-input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
+.task button:hover svg {
+  fill: #ff4a3d;
 }
