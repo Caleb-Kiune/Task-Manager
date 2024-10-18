@@ -47,7 +47,5 @@ document.addEventListener('DOMContentLoaded', ()=>{
         taskText.textContent = newText.trim()
       }
     }
-  }  )
-
-  
-} )
+  }) 
+})
