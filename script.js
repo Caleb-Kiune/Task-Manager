@@ -38,5 +38,16 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
   })
 
+  taskList.addEventListener('click', (e) => {
+    if (e.target.closest('button').classList.contains('edit')) {
+      const taskItem = e.target.closest('li')
+      const taskText = taskItem.querySelector('.text')
+      const newText = prompt('Edit your task:', taskText.textContent)
+      if (newText !== null && newText.trim() !== '') {
+        taskText.textContent = newText.trim()
+      }
+    }
+  }  )
+
   
 } )
