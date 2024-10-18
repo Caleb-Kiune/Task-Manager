@@ -29,5 +29,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
       input.value = ''
 
     }
+  });
+
+  taskList.addEventListener('click',(e) => {
+    if (e.target.closest ('button').classList.contains('remove')) {
+      e.target.closest('li').remove()
+    }
+
   })
+
+  
 } )
