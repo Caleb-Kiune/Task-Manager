@@ -2,14 +2,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
   const input = document.getElementById("input");
   const button = document.getElementById("button");
   const taskList =document.getElementById('tasks');
-  const time = document.getElementById('time')
-  const duration = document .getElementById('duration')
+  const time = document.getElementById('time');
+  const duration = document .getElementById('duration');
 
   button.addEventListener('click', (e) => {
     e.preventDefault();
     const taskText = input.value.trim();
-    const taskTime = time.value
-    const taskDuration = duration.value
+    const taskTime = time.value;
+    const taskDuration = duration.value;
 
     if (taskText !== '') {
       const li =document.createElement('li');
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
       const labelText =document.createElement('label');
       labelText.classList.add('text');
-      labelText.textContent = `${taskText} at ${taskTime} for ${taskDuration} mins`
+      labelText.textContent = `${taskText} at ${taskTime} for ${taskDuration} mins`;
       
       const editButton = document.createElement('button');
       editButton.classList.add('edit');
@@ -35,39 +35,39 @@ document.addEventListener('DOMContentLoaded', ()=>{
       li.appendChild(removeButton);
       taskList.appendChild(li);
       input.value = '';
-      time.value = ''
-      duration.value = ''
+      time.value = '';
+      duration.value = '';
 
-      const alertTime = new Date()
-      alertTime.setHours(taskTime.split(':')[0])
-      alertTime.setMinutes(taskTime.split(':')[1])
-      const currentTime = new Date()
-      const timeDifference = alertTime - currentTime
+      const alertTime = new Date();
+      alertTime.setHours(taskTime.split(':')[0]);
+      alertTime.setMinutes(taskTime.split(':')[1]);
+      const currentTime = new Date();
+      const timeDifference = alertTime - currentTime;
 
       if (timeDifference > 0) {
         setTimeout(() => {
           alert(`Time for task: ${taskText}`)
-        }, timeDifference)
+        }, timeDifference);
       }
 
       removeButton.addEventListener('click', () => {
-        taskList.removeChild(li)
-      })
+        taskList.removeChild(li);
+      });
 
       editButton.addEventListener('click', () => {
-        const newText = prompt('Edit task:', taskText)
+        const newText = prompt('Edit task:', taskText);
         if (newText !== null && newText.trim() !== '') {
-          labelText.textContent = `${newText} at ${taskTime} for ${taskDuration} mins`
+          labelText.textContent = `${newText} at ${taskTime} for ${taskDuration} mins`;
         }
       })
 
       checkbox.addEventListener('change', () => {
         if (checkbox.checked) {
-          li.classList.add('completed')
+          li.classList.add('completed');
         } else {
-          li.classList.remove('completed')
+          li.classList.remove('completed');
         }
-      })
+      });
     }
-  })
-})
+  });
+});
