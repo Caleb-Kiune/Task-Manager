@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
       checkbox.addEventListener('change', () => {
         if (checkbox.checked) {
           li.classList.add('completed');
+          alert(`Completed: $ {taskText}`)
         } else {
           li.classList.remove('completed');
         }

@@ -99,3 +99,8 @@ button:hover {
 .task button:hover svg {
   fill: #ff4a3d;
 }
+
+.completed {
+  text-decoration: line-through;
+  color: #888
+}
