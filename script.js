@@ -50,26 +50,25 @@ document.addEventListener('DOMContentLoaded', ()=>{
         }, timeDifference)
       }
 
+      removeButton.addEventListener('click', () => {
+        taskList.removeChild(li)
+      })
 
+      editButton.addEventListener('click', () => {
+        const newText = prompt('Edit task:', taskText)
+        if (newText !== null && newText.trim() !== '') {
+          labelText.textContent = `${newText} at ${taskTime} for ${taskDuration} mins`
+        }
+      })
+
+      checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+          li.classList.add('completed')
+        } else {
+          li.classList.remove('completed')
+        }
+      })
 
     }
-  });
-
-  taskList.addEventListener('click',(e) => {
-    if (e.target.closest ('button').classList.contains('remove')) {
-      e.target.closest('li').remove();
-    }
-
-  });
-
-  taskList.addEventListener('click', (e) => {
-    if (e.target.closest('button').classList.contains('edit')) {
-      const taskItem = e.target.closest('li');
-      const taskText = taskItem.querySelector('.text');
-      const newText = prompt('Edit your task:', taskText.textContent);
-      if (newText !== null && newText.trim() !== '') {
-        taskText.textContent = newText.trim();
-      }
-    }
-  });
-});
+  })
+  
