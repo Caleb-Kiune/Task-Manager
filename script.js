@@ -68,7 +68,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
           li.classList.remove('completed')
         }
       })
-
     }
   })
-  
+})
