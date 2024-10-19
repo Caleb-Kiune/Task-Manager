@@ -38,7 +38,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
       time.value = ''
       duration.value = ''
 
-      
+      const alertTime = new Date()
+      alertTime.setHours(taskTime.split(':')[0])
+      alertTime.setMinutes(taskTime.split(':')[1])
+      const currentTime = new Date()
+      const timeDifference = alertTime - currentTime
+
+      if (timeDifference > 0) {
+        setTimeout(() => {
+          alert(`Time for task: ${taskText}`)
+        }, timeDifference)
+      }
+
+
 
     }
   });
