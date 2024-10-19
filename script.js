@@ -2,10 +2,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
   const input = document.getElementById("input");
   const button = document.getElementById("button");
   const taskList =document.getElementById('tasks');
+  const time = document.getElementById('time')
+  const duration = document .getElementById('duration')
 
   button.addEventListener('click', (e) => {
     e.preventDefault();
     const taskText = input.value.trim();
+    const taskTime = time.value
+    const taskDuration = duration.value
 
     if (taskText !== '') {
       const li =document.createElement('li');
@@ -16,7 +20,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
       const labelText =document.createElement('label');
       labelText.classList.add('text');
-      labelText.textContent = taskText;
+      labelText.textContent = `${taskText} at ${taskTime} for ${taskDuration} mins`
       
       const editButton = document.createElement('button');
       editButton.classList.add('edit');
@@ -31,6 +35,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
       li.appendChild(removeButton);
       taskList.appendChild(li);
       input.value = '';
+      time.value = ''
+      duration.value = ''
+
+      
 
     }
   });
