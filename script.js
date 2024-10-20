@@ -106,9 +106,18 @@ document.addEventListener('DOMContentLoaded', () => {
     tasksArray.sort((a,b) => {
       const timeA = a.querySelector('.text').textContent.split(' at ')[1].split(' for ')[0];
       const timeB = a.querySelector('.text').textContent.split(' at ')[1].split(' for ')[0];
-      return new Date(`1970/01/01 ${timeA}`) - new Date (`1970/01/01 ${timeB}`);
+      return new Date(`2000/01/01 ${timeA}`) - new Date (`1970/01/01 ${timeB}`);
     });
     taskList.innerHTML = '';
     tasksArray.forEach(task => taskList.appendChild(task));
+  });
+  filterUpcomingButton.addEventListener('click', () => {
+    const now = new Date();
+    const taskArray = Array.from(taskList.children);
+    taskArray.forEach(task => {
+      const taskTime = task.querySelector('.text').textContent.split(' at ')[1].split(' for')[0];
+      const taskDate = new  Date(`2000/01/01 ${taskTime}`);
+      task.computedStyleMap.display = taskDate >= now ? '' : 'none';
+    })
   })
 });
