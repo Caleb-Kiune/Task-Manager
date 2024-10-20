@@ -1,4 +1,6 @@
-# **CALEB KIUNE TO DO LIST/TASK MANAGER PROJECT**
+# **TO DO LIST/TASK MANAGER PROJECT**
+## **AUTHOR**
+Caleb Kiune
 ## **PROJECT OVERVIEW**
 A task manager created using HTML, CSS JavaScript and JSON.
 It enables the user to add,delete,edit,sort and mark tasks as completed.
@@ -20,7 +22,7 @@ The task manager uses a json server to ensure seamless experience.
 3. Run the json server using the command `json-server --watch db.json --port 8000`.
 4. Launch the application in the browser using the command `explorer.exe index.html`.
 ## **APPLICATION USAGE**
-1. Add Task: Fill in the task detaila in the input field and click `Add`.
+1. Add Task: Fill in the task details in the input field and click `Add`.
 2. Edit Task: Click the button next to a task, update the details and save.
 3. Delete Task: Click the delete button next to a task to remove it.
 4. Sort Task: Click the `Sort by Time` button to order tasks chronologically.
