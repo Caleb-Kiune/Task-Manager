@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const taskList = document.getElementById('tasks');
   const time = document.getElementById('time');
   const duration = document.getElementById('duration');
+  const sortTimeButton = document.getElementById('sortTime');
+  const filterUpcomingButton = document.getElementById('filterUpcoming');
 
   // Fetch tasks from json-server
   fetch('http://localhost:8000/tasks')
@@ -98,4 +100,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  sortTimeButton.addEventListener('click', () => {
+    const tasksArray = Array.from(taskList.children);
+    tasksArray.sort((a,b) => {
+      const timeA = a.querySelector('.text').textContent.split(' at ')[1].split(' for ')[0];
+      const timeB = a.querySelector('.text').textContent.split(' at ')[1].split(' for ')[0];
+      return new Date(`1970/01/01 ${timeA}`) - new Date (`1970/01/01 ${timeB}`);
+    });
+    taskList.innerHTML = '';
+    tasksArray.forEach(task => taskList.appendChild(task));
+  })
 });
