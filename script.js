@@ -99,8 +99,17 @@ document.addEventListener('DOMContentLoaded', () => {
               li.classList.remove('completed');
           }
       });
+    
+      li.addEventListener('mouseover', handleMouseover);
+      li.addEventListener('mouseout', handleMouseout);
   }
-
+  function handleMouseover(e) {
+      e.target.style.backgroundColor = '#444';  
+  }
+  function handleMouseout(e) {
+      e.target.style.backgroundColor = '';  
+  }
+  
   // Sorting tasks by time
   sortTimeButton.addEventListener('click', () => {
       const tasksArray = Array.from(taskList.children);
