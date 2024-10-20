@@ -1,34 +1,34 @@
 {
   "tasks": [
     {
-      "id": "1d61",
+      "id": "c9c2",
       "taskText": "Exercise",
-      "taskTime": "06:00",
+      "taskTime": "05:20",
+      "taskDuration": "40"
+    },
+    {
+      "id": "6829",
+      "taskText": "Breakfast",
+      "taskTime": "07:20",
       "taskDuration": "30"
     },
     {
-      "id": "b91a",
-      "taskText": "Shopping",
-      "taskTime": "15:06",
-      "taskDuration": "22"
-    },
-    {
-      "id": "19c8",
-      "taskText": "walking the dog",
-      "taskTime": "09:06",
-      "taskDuration": "33"
-    },
-    {
-      "id": "7224",
-      "taskText": "study",
-      "taskTime": "19:07",
-      "taskDuration": "48"
-    },
-    {
-      "id": "22d8",
-      "taskText": "breakfast",
-      "taskTime": "07:14",
+      "id": "93c0",
+      "taskText": "Walk the dog",
+      "taskTime": "18:20",
       "taskDuration": "15"
+    },
+    {
+      "id": "ca67",
+      "taskText": "shopping",
+      "taskTime": "14:20",
+      "taskDuration": "40"
+    },
+    {
+      "id": "0334",
+      "taskText": "study",
+      "taskTime": "10:21",
+      "taskDuration": "35"
     }
   ]
 }
