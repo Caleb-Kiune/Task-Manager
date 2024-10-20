@@ -1,34 +1,22 @@
 {
   "tasks": [
     {
-      "id": "c9c2",
+      "id": "bca6",
       "taskText": "Exercise",
-      "taskTime": "05:20",
+      "taskTime": "06:00",
       "taskDuration": "40"
     },
     {
-      "id": "6829",
-      "taskText": "Breakfast",
-      "taskTime": "07:20",
-      "taskDuration": "30"
+      "id": "d909",
+      "taskText": "Meeting",
+      "taskTime": "08:00",
+      "taskDuration": "20"
     },
     {
-      "id": "93c0",
+      "id": "ddb0",
       "taskText": "Walk the dog",
-      "taskTime": "18:20",
-      "taskDuration": "15"
-    },
-    {
-      "id": "ca67",
-      "taskText": "shopping",
-      "taskTime": "14:20",
-      "taskDuration": "40"
-    },
-    {
-      "id": "0334",
-      "taskText": "study",
-      "taskTime": "10:21",
-      "taskDuration": "35"
+      "taskTime": "17:02",
+      "taskDuration": "30"
     }
   ]
 }
