@@ -1,0 +1,9 @@
+{
+  "tasks":[
+    {"id": 1, "taskTetxt": "Task number 1", "taskTime": "10:00", "taskDuration": 30 },
+    {"id": 2, "taskTetxt": "Task number 2", "taskTime": "12:00", "taskDuration": 45 },
+    {"id": 3, "taskTetxt": "Task number 3", "taskTime": "14:00", "taskDuration": 20 },
+    {"id": 4, "taskTetxt": "Task number 4", "taskTime": "16:00", "taskDuration": 25 },
+    {"id": 5, "taskTetxt": "Task number 5", "taskTime": "18:00", "taskDuration": 40 }
+  ]
+}
