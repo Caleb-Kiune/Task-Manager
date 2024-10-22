@@ -5,32 +5,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const time = document.getElementById('time');
     const duration = document.getElementById('duration');
     const sortTimeButton = document.getElementById('sortTime');
-  
-    // Fetch tasks from DummyJSON API
-    fetch('https://dummyjson.com/todos')
+    const filterUpcomingButton = document.getElementById('filterUpcoming');
+
+    // Fetch tasks from json-server
+    fetch('http://localhost:8000/tasks')
       .then(response => response.json())
-      .then(data => {
-          data.todos.forEach(task => {
+      .then(tasks => {
+          tasks.forEach(task => {
               addTaskToDOM(task);
           });
       })
       .catch(error => console.error('Error:', error));
-  
-    button.addEventListener('click', (e) => {
+
+    document.querySelector('form').addEventListener('submit', (e) => {
         e.preventDefault();
         const taskText = input.value.trim();
         const taskTime = time.value;
         const taskDuration = duration.value;
         if (taskText !== '') {
-            fetch('https://dummyjson.com/todos/add', {
+            fetch('http://localhost:8000/tasks', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    todo: taskText,
-                    time: taskTime,
-                    duration: taskDuration
+                    taskText,
+                    taskTime,
+                    taskDuration
                 })
             })
             .then(response => response.json())
@@ -43,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error('Error:', error));
         }
     });
-  
+
     function addTaskToDOM(task) {
         const li = document.createElement('li');
         li.classList.add('task');
@@ -51,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         checkbox.type = 'checkbox';
         const labelText = document.createElement('label');
         labelText.classList.add('text');
-        labelText.textContent = `${task.todo} at ${task.time} for ${task.duration} mins`;
+        labelText.textContent = `${task.taskText} at ${task.taskTime} for ${task.taskDuration} mins`;
         const editButton = document.createElement('button');
         editButton.classList.add('edit');
         editButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg>';
@@ -63,10 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
         li.appendChild(editButton);
         li.appendChild(removeButton);
         taskList.appendChild(li);
-  
+
         // Add event listeners
         removeButton.addEventListener('click', () => {
-            fetch(`https://dummyjson.com/todos/${task.id}`, {
+            fetch(`http://localhost:8000/tasks/${task.id}`, {
                 method: 'DELETE'
             })
             .then(() => {
@@ -74,43 +75,45 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => console.error('Error:', error));
         });
-  
+
         editButton.addEventListener('click', () => {
-            const newText = prompt('Edit task:', task.todo);
-            if (newText !== null && newText.trim() !== '') {
-                labelText.textContent = `${newText} at ${task.time} for ${task.duration} mins`;
-                fetch(`https://dummyjson.com/todos/${task.id}`, {
+            const newText = prompt('Edit task:', task.taskText);
+            const newTime = prompt('Edit time:', task.taskTime);
+            const newDuration = prompt('Edit duration (min):', task.taskDuration);
+            if (newText !== null && newText.trim() !== '' && newTime !== null && newTime.trim() !== '' && newDuration !== null && newDuration.trim() !== '') {
+                labelText.textContent = `${newText} at ${newTime} for ${newDuration} mins`;
+                fetch(`http://localhost:8000/tasks/${task.id}`, {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ todo: newText })
+                    body: JSON.stringify({ taskText: newText, taskTime: newTime, taskDuration: newDuration })
                 })
                 .catch(error => console.error('Error:', error));
             }
         });
-  
+
         checkbox.addEventListener('change', () => {
             if (checkbox.checked) {
                 li.classList.add('completed');
-                alert(`Completed: ${task.todo}`);
+                alert(`Completed: ${task.taskText}`);
             } else {
                 li.classList.remove('completed');
             }
         });
-  
+
         li.addEventListener('mouseover', handleMouseover);
         li.addEventListener('mouseout', handleMouseout);
     }
-  
+
     function handleMouseover(e) {
         e.target.style.backgroundColor = '#444';
     }
-  
+
     function handleMouseout(e) {
         e.target.style.backgroundColor = '';
     }
-  
+
     // Sorting tasks by time
     sortTimeButton.addEventListener('click', () => {
         const tasksArray = Array.from(taskList.children);
@@ -122,5 +125,4 @@ document.addEventListener('DOMContentLoaded', () => {
         taskList.innerHTML = '';
         tasksArray.forEach(task => taskList.appendChild(task));
     });
-  });
-  
+});
