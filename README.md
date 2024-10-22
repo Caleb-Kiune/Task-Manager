@@ -20,7 +20,7 @@ The task manager uses a json server to ensure seamless experience.
 1. Git clone the repository from github.
 2. Install json server using the command `npm install -g json-server`.
 3. Run the json server using the command `json-server --watch db.json --port 8000`.
-4. Launch the application in the browser using the command `explorer.exe index.html`.
+4. Launch the application in the chrome browser using the link `https://caleb-kiune.github.io/Task-Manager/`
 ## **APPLICATION USAGE**
 1. Add Task: Fill in the task details in the input field and click `Add`.
 2. Edit Task: Click the button next to a task, update the details and save.
