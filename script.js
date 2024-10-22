@@ -7,13 +7,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const sortTimeButton = document.getElementById('sortTime');
     const filterUpcomingButton = document.getElementById('filterUpcoming');
 
-    // Fetch tasks from json-server
-    fetch('http://localhost:8000/tasks')
+    // Fetch a post from JSONPlaceholder API
+    fetch('https://jsonplaceholder.typicode.com/posts/1')
         .then(response => response.json())
-        .then(tasks => {
-            tasks.forEach(task => {
-                addTaskToDOM(task);
-            });
+        .then(post => {
+            const task = {
+                taskText: post.title,
+                taskTime: "N/A",
+                taskDuration: "N/A",
+                completed: false,
+                id: post.id
+            };
+            addTaskToDOM(task);
         })
         .catch(error => console.error('Error:', error));
 
@@ -23,20 +28,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const taskTime = time.value;
         const taskDuration = duration.value;
         if (taskText !== '') {
-            fetch('http://localhost:8000/tasks', {
+            fetch('https://jsonplaceholder.typicode.com/posts', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    taskText,
-                    taskTime,
-                    taskDuration,
-                    completed: false
+                    title: taskText,
+                    body: taskText,
+                    userId: 1
                 })
             })
             .then(response => response.json())
-            .then(task => {
+            .then(post => {
+                const task = {
+                    taskText: post.title,
+                    taskTime: taskTime,
+                    taskDuration: taskDuration,
+                    completed: false,
+                    id: post.id
+                };
                 addTaskToDOM(task);
                 input.value = '';
                 time.value = '';
@@ -73,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Add event listeners
         removeButton.addEventListener('click', () => {
-            fetch(`http://localhost:8000/tasks/${task.id}`, {
+            fetch(`https://jsonplaceholder.typicode.com/posts/${task.id}`, {
                 method: 'DELETE'
             })
             .then(() => {
@@ -88,30 +99,32 @@ document.addEventListener('DOMContentLoaded', () => {
             const newDuration = prompt('Edit duration (min):', task.taskDuration);
             if (newText !== null && newText.trim() !== '' && newTime !== null && newTime.trim() !== '' && newDuration !== null && newDuration.trim() !== '') {
                 labelText.textContent = `${newText} at ${newTime} for ${newDuration} mins`;
-                fetch(`http://localhost:8000/tasks/${task.id}`, {
+                fetch(`https://jsonplaceholder.typicode.com/posts/${task.id}`, {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ taskText: newText, taskTime: newTime, taskDuration: newDuration })
+                    body: JSON.stringify({ title: newText, body: newText })
                 })
                 .catch(error => console.error('Error:', error));
             }
         });
 
         checkbox.addEventListener('change', () => {
-            if (checkbox.checked) {
-                li.classList.add('completed');
-                alert(`Completed: ${task.taskText}`);
-            } else {
-                li.classList.remove('completed');
-            }
-            fetch(`http://localhost:8000/tasks/${task.id}`, {
+            fetch(`https://jsonplaceholder.typicode.com/posts/${task.id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ completed: checkbox.checked })
+            })
+            .then(() => {
+                if (checkbox.checked) {
+                    li.classList.add('completed');
+                    alert(`Completed: ${task.taskText}`);
+                } else {
+                    li.classList.remove('completed');
+                }
             })
             .catch(error => console.error('Error:', error));
         });
